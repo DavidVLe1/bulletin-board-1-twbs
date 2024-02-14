@@ -1,59 +1,71 @@
+<div class="container">
+  <div class="row">
+    <div class="offset-md-3 col-md-6 ">
 
-<div class="card" style="width: 18rem;">
-  <div class="card-header">
-    <div class="d-flex justify-content-between">
-      <div>
-        All boards
-      </div>
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Add a new board
-      </button>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">New board</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
+      <div class="card" >
+        <div class="card-header">
+          <div class="d-flex justify-content-between">
             <div>
-              <div>
+              All boards
+            </div>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Add a new board
+            </button>
+          </div>
 
-                <form action="/insert_board" method="post">
-                  <div>
-                    <label for="name_box">
-                      Name
-                    </label>
+        </div>
+        <ul class="list-group list-group-flush">
+          <% @list_of_boards.each do |a_board| %>
 
-                    <input type="text" id="name_box" name="query_name">
-                  </div>
+            <a href="/boards/<%= a_board.id %>" style="text-decoration:none">
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                  <div><%= a_board.name %></div>
+                  <div>></div>
+                </div>
+              </li>
+            </a>
 
-                  <button class="btn btn-success">
-                    Add board
-                  </button>
-                </form>
-              </div>
+          <% end %>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">New board</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <div>
+
+              <form action="/insert_board" method="post">
+                <div>
+                  <label for="name_box">
+                    Name
+                  </label>
+
+                  <input type="text" id="name_box" name="query_name">
+                </div>
+
+                <button class="btn btn-success">
+                  Add board
+                </button>
+              </form>
             </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            
-          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+
         </div>
       </div>
     </div>
   </div>
-  <ul class="list-group list-group-flush">
-    <% @list_of_boards.each do |a_board| %>
-      <li>
-        <a href="/boards/<%= a_board.id %>">
-          <%= a_board.name %>
-        </a>
-      </li>
-    <% end %>
-  </ul>
 </div>
